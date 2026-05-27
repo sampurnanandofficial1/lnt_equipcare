@@ -4,6 +4,7 @@ import path from 'path'
 
 export default defineConfig({
   plugins: [react()],
+  base: '/lnt_equipcare/',
   resolve: {
     alias: {
       '@':           path.resolve(__dirname, './src'),
@@ -18,8 +19,5 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: false,
-  },
-  server: {
-    port: 3000,
   },
 })

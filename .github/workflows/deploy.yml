@@ -1,78 +1,67 @@
-name: Build & Deploy to Firebase
+name: Deploy L&T Equipcare to GitHub Pages
 
-# ─── Triggers ─────────────────────────────────────────────────────────────────
 on:
   push:
-    branches: [ main ]          # Auto-deploy on every push to main
-  workflow_dispatch:            # Manual trigger button in GitHub UI
+    branches: [ main ]
+  workflow_dispatch:
 
-# ─── Jobs ─────────────────────────────────────────────────────────────────────
+permissions:
+  contents: read
+  pages:    write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
 jobs:
-  deploy:
-    name: Build React App & Deploy to Firebase
+  build-and-deploy:
+    name: Build & Deploy to GitHub Pages
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
 
-      # 1. Checkout code
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      # 2. Set up Node.js
       - name: Set up Node.js 22
         uses: actions/setup-node@v4
         with:
           node-version: '22'
           cache: 'npm'
 
-      # 3. Install root dependencies (React app)
-      - name: Install frontend dependencies
+      - name: Install dependencies
         run: npm install
 
-      # 4. Build React app with Firebase env vars
       - name: Build React app
         run: npm run build
         env:
-          VITE_FIREBASE_API_KEY:            ${{ secrets.VITE_FIREBASE_API_KEY }}
-          VITE_FIREBASE_AUTH_DOMAIN:        lntcmmb-intelligence.firebaseapp.com
-          VITE_FIREBASE_PROJECT_ID:         lntcmmb-intelligence
-          VITE_FIREBASE_STORAGE_BUCKET:     lntcmmb-intelligence.firebasestorage.app
+          VITE_FIREBASE_API_KEY:             ${{ secrets.VITE_FIREBASE_API_KEY }}
+          VITE_FIREBASE_AUTH_DOMAIN:         lntcmmb-intelligence.firebaseapp.com
+          VITE_FIREBASE_PROJECT_ID:          lntcmmb-intelligence
+          VITE_FIREBASE_STORAGE_BUCKET:      lntcmmb-intelligence.firebasestorage.app
           VITE_FIREBASE_MESSAGING_SENDER_ID: "37497109814"
-          VITE_FIREBASE_APP_ID:             1:37497109814:web:eec6c70fc99f8264c6c797
-          VITE_FIREBASE_MEASUREMENT_ID:     G-M3NH5FDXZ1
+          VITE_FIREBASE_APP_ID:              1:37497109814:web:eec6c70fc99f8264c6c797
+          VITE_FIREBASE_MEASUREMENT_ID:      G-M3NH5FDXZ1
 
-      # 5. Install Firebase Functions dependencies
-      - name: Install functions dependencies
-        run: npm install
-        working-directory: functions
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v4
 
-      # 6. Install Firebase CLI
-      - name: Install Firebase CLI
-        run: npm install -g firebase-tools
-
-      # 7. Set Anthropic API key as Firebase secret (idempotent)
-      - name: Set Anthropic API key in Firebase Secret Manager
-        run: |
-          echo "${{ secrets.ANTHROPIC_API_KEY }}" | \
-          firebase functions:secrets:set ANTHROPIC_API_KEY --force --data-file=-
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-        continue-on-error: true   # Won't fail if secret already exists
-
-      # 8. Deploy Hosting + Functions
-      - name: Deploy to Firebase
-        uses: FirebaseExtended/action-hosting-deploy@v0
+      - name: Upload build to Pages
+        uses: actions/upload-pages-artifact@v3
         with:
-          repoToken:         ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-          channelId:         live
-          projectId:         lntcmmb-intelligence
-          target:            lntcmmb-intelligence
+          path: dist
 
-      # 9. Print live URL
-      - name: Deployment complete
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Print live URL
         run: |
-          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-          echo "✅  L&T Equipcare is LIVE"
-          echo "🌐  https://lntcmmb-intelligence.web.app"
-          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "✅  L&T Equipcare is LIVE on GitHub Pages"
+          echo "🌐  https://sampurnanandofficial1.github.io/lnt_equipcare/"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
