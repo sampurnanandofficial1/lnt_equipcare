@@ -13,7 +13,7 @@ import DashboardPage from './pages/DashboardPage'
 export default function App() {
   const [chatOpen, setChatOpen] = useState(false)
   return (
-    <div className="min-h-screen bg-lt-navy text-white">
+    <div className="min-h-screen bg-white text-lt-navy">
       <Navbar onChatOpen={() => setChatOpen(true)}/>
       <main>
         <Routes>
@@ -28,7 +28,7 @@ export default function App() {
       {!chatOpen && (
         <button onClick={() => setChatOpen(true)}
           className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-lt-red rounded-full flex items-center justify-center
-                     shadow-[0_0_30px_rgba(200,16,46,0.4)] hover:bg-lt-red-dark transition-all hover:scale-110 animate-pulse-glow">
+                     shadow-red hover:bg-lt-red-dark transition-all hover:scale-110">
           <Bot size={24} className="text-white"/>
         </button>
       )}

@@ -4,26 +4,17 @@ import UserTypes        from '../components/sections/UserTypes'
 import ServiceNetwork   from '../components/sections/ServiceNetwork'
 import ContractTypes    from '../components/sections/ContractTypes'
 import TrainingAcademy  from '../components/sections/TrainingAcademy'
-import { Bot, Phone, ArrowRight, Award, Shield, Zap } from 'lucide-react'
+import { Bot, Phone, ArrowRight, Shield, Award, Zap } from 'lucide-react'
 
 function AwardsStrip() {
   return (
-    <section className="py-12 border-y border-lt-surface-border bg-lt-surface">
+    <section className="py-10 bg-lt-navy">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="flex flex-wrap items-center justify-center gap-6 text-center">
-          {[
-            { icon:'🏆', title:'Best Service Partner 2023',     sub:'Award from Komatsu' },
-            { icon:'🥇', title:'SRM Partner of the Year 2025',  sub:'L&T Group Recognition' },
-            { icon:'🎖️', title:'Komatsu Gold Rebuild Cert',     sub:'1st Asian Distributor' },
-            { icon:'🌍', title:'ATC Asia Champion 2024',        sub:'Mr. P. Vinod — L&T' },
-            { icon:'📋', title:'ISO 9001 | 14001 | 45001',      sub:'Triple Certified' },
-          ].map(a => (
-            <div key={a.title} className="flex items-center gap-3 px-5 py-3 rounded-xl border border-lt-surface-border bg-lt-surface-card">
-              <span className="text-2xl">{a.icon}</span>
-              <div className="text-left">
-                <div className="text-sm font-body font-semibold text-white">{a.title}</div>
-                <div className="text-xs text-lt-gray-muted font-body">{a.sub}</div>
-              </div>
+        <div className="flex flex-wrap items-center justify-center gap-5">
+          {[['🏆','Best Service Partner 2023','from Komatsu'],['🥇','SRM Partner 2025','L&T Group'],['🎖️','Komatsu Gold Rebuild Cert','1st in Asia'],['🌍','ATC Asia Champion 2024','Mr. P. Vinod'],['📋','ISO 9001 | 14001 | 45001','Triple Certified']].map(([i,t,s]) => (
+            <div key={t} className="flex items-center gap-3">
+              <span className="text-2xl">{i}</span>
+              <div><div className="text-sm font-body font-semibold text-white">{t}</div><div className="text-xs text-gray-400 font-body">{s}</div></div>
             </div>
           ))}
         </div>
@@ -34,63 +25,38 @@ function AwardsStrip() {
 
 function EquipcareIntegration() {
   return (
-    <section className="py-24 bg-lt-surface">
+    <section className="py-20 bg-white">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-12">
           <div className="section-label mb-3">Escalation Architecture</div>
-          <h2 className="section-title mb-4">Platform + Equipcare = Unbreakable Support</h2>
+          <h2 className="section-title text-4xl sm:text-5xl mb-4">Platform + Equipcare = Unbreakable Support</h2>
           <div className="divider-red mx-auto"/>
         </div>
-
-        {/* Flow diagram */}
-        <div className="relative">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
-            {/* Layer 1 */}
-            <div className="card-dark border-blue-500/30 border">
-              <div className="text-center mb-4">
-                <div className="w-12 h-12 bg-blue-500/10 border border-blue-500/30 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <Bot size={22} className="text-blue-400"/>
-                </div>
-                <div className="tag-blue mb-2">Layer 1</div>
-                <h3 className="font-display font-bold text-xl text-white uppercase">Digital Platform</h3>
-              </div>
-              <ul className="space-y-2 text-xs text-lt-gray-muted font-body">
-                <li className="flex gap-2"><Zap size={11} className="text-blue-400 mt-0.5 flex-shrink-0"/>24×7 AI self-service</li>
-                <li className="flex gap-2"><Zap size={11} className="text-blue-400 mt-0.5 flex-shrink-0"/>Troubleshooting guides</li>
-                <li className="flex gap-2"><Zap size={11} className="text-blue-400 mt-0.5 flex-shrink-0"/>Training & certifications</li>
-                <li className="flex gap-2"><Zap size={11} className="text-blue-400 mt-0.5 flex-shrink-0"/>Service ticket creation</li>
-              </ul>
-              <div className="mt-4 text-center text-xs text-blue-400 font-body font-semibold">Resolves ~70% of queries</div>
-            </div>
-
-            {/* Arrow */}
-            <div className="hidden md:flex flex-col items-center justify-center gap-2 py-8">
-              <div className="text-xs text-lt-gray-muted font-body text-center mb-2">Unresolved issues escalate automatically</div>
-              <ArrowRight size={28} className="text-lt-red"/>
-              <div className="text-[10px] text-lt-gold font-body text-center mt-1">Seamless handover with full context</div>
-            </div>
-
-            {/* Layer 2 */}
-            <div className="card-dark border-lt-red/40 border-2 ring-1 ring-lt-red/10">
-              <div className="text-center mb-4">
-                <div className="w-12 h-12 bg-lt-red/10 border border-lt-red/30 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <Shield size={22} className="text-lt-red"/>
-                </div>
-                <div className="tag-red mb-2">Layer 2</div>
-                <h3 className="font-display font-bold text-xl text-white uppercase">Equipcare Expert</h3>
-              </div>
-              <ul className="space-y-2 text-xs text-lt-gray-muted font-body">
-                <li className="flex gap-2"><Award size={11} className="text-lt-red mt-0.5 flex-shrink-0"/>1,500+ trained engineers</li>
-                <li className="flex gap-2"><Award size={11} className="text-lt-red mt-0.5 flex-shrink-0"/>Advanced diagnostics</li>
-                <li className="flex gap-2"><Award size={11} className="text-lt-red mt-0.5 flex-shrink-0"/>Field intervention</li>
-                <li className="flex gap-2"><Award size={11} className="text-lt-red mt-0.5 flex-shrink-0"/>Component overhauls</li>
-              </ul>
-              <div className="mt-4 text-center">
-                <a href="tel:1800XXXXXXX" className="flex items-center justify-center gap-1.5 text-xs text-lt-red font-body font-semibold">
-                  <Phone size={11}/> 1800-XXX-XXXX (24×7)
-                </a>
-              </div>
-            </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+          <div className="card-red p-6">
+            <div className="w-12 h-12 bg-lt-navy rounded-xl flex items-center justify-center mb-4"><Bot size={22} className="text-white"/></div>
+            <span className="tag-navy mb-3 block w-fit">Layer 1 — Digital Platform</span>
+            <h3 className="font-display font-bold text-2xl text-lt-navy uppercase mb-3">Self-Service</h3>
+            <ul className="space-y-1.5 text-sm text-lt-gray font-body mb-4">
+              {['24×7 AI self-service','Troubleshooting guides','Training & certifications','Service ticket creation'].map(f => <li key={f} className="flex gap-2"><Zap size={12} className="text-lt-navy mt-0.5 flex-shrink-0"/>{f}</li>)}
+            </ul>
+            <div className="text-xs font-body font-semibold text-green-600 bg-green-50 border border-green-200 rounded px-3 py-1.5 text-center">Resolves ~70% of queries</div>
+          </div>
+          <div className="hidden md:flex flex-col items-center justify-center gap-2 py-8">
+            <p className="text-xs text-lt-gray font-body text-center mb-2">Unresolved issues escalate automatically</p>
+            <ArrowRight size={28} className="text-lt-red"/>
+            <p className="text-[10px] text-lt-gray font-body text-center mt-1">Full context passed to engineer</p>
+          </div>
+          <div className="card border-t-4 border-lt-red p-6 ring-1 ring-lt-red/20">
+            <div className="w-12 h-12 bg-lt-red rounded-xl flex items-center justify-center mb-4"><Shield size={22} className="text-white"/></div>
+            <span className="tag-red mb-3 block w-fit">Layer 2 — Equipcare Expert</span>
+            <h3 className="font-display font-bold text-2xl text-lt-navy uppercase mb-3">Expert Intervention</h3>
+            <ul className="space-y-1.5 text-sm text-lt-gray font-body mb-4">
+              {['1,500+ trained engineers','Advanced diagnostics','Field intervention','Component overhauls'].map(f => <li key={f} className="flex gap-2"><Award size={12} className="text-lt-red mt-0.5 flex-shrink-0"/>{f}</li>)}
+            </ul>
+            <a href="tel:18008339990" className="flex items-center justify-center gap-1.5 bg-lt-red text-white text-xs font-body font-semibold py-2 px-4 rounded hover:bg-lt-red-dark transition-all">
+              <Phone size={11}/> 1800-833-9990 (24×7)
+            </a>
           </div>
         </div>
       </div>
@@ -100,23 +66,16 @@ function EquipcareIntegration() {
 
 function CTA({ onChatOpen }) {
   return (
-    <section className="py-20 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-lt-red/20 via-lt-navy to-lt-blue/20"/>
-      <div className="absolute inset-0 grid-bg opacity-20"/>
-      <div className="relative max-w-3xl mx-auto px-4 sm:px-6 text-center">
-        <h2 className="font-display font-black text-5xl sm:text-6xl text-white uppercase tracking-wide mb-4">
-          Ready to Go Digital?
-        </h2>
-        <p className="text-lg text-gray-400 font-body mb-8">
-          Join thousands of L&T Komatsu customers already using Equipcare to maximize machine uptime.
-        </p>
+    <section className="py-20 bg-lt-red">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+        <h2 className="font-display font-black text-5xl sm:text-6xl text-white uppercase tracking-wide mb-4">Ready to Go Digital?</h2>
+        <p className="text-red-100 font-body text-lg mb-8">Join thousands of L&T Komatsu customers maximizing machine uptime.</p>
         <div className="flex flex-wrap gap-3 justify-center">
-          <button onClick={onChatOpen} className="btn-red flex items-center gap-2 text-base px-7 py-3.5">
+          <button onClick={onChatOpen} className="flex items-center gap-2 bg-white text-lt-red font-body font-bold px-7 py-3.5 rounded hover:bg-red-50 transition-all text-base shadow-lg">
             <Bot size={17}/> Start with AI Assistant
           </button>
-          <a href="tel:1800XXXXXXX" className="flex items-center gap-2 text-base px-7 py-3.5 border-2 border-white/20
-             text-white font-body font-semibold rounded-xl hover:bg-white/5 transition-all">
-            <Phone size={17}/> Call 1800-XXX-XXXX
+          <a href="tel:18008339990" className="flex items-center gap-2 border-2 border-white text-white font-body font-semibold px-7 py-3.5 rounded hover:bg-white/10 transition-all text-base">
+            <Phone size={17}/> 1800-833-9990
           </a>
         </div>
       </div>

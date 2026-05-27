@@ -17,15 +17,15 @@ const LEVEL_COLOR = { Beginner:'text-green-400 bg-green-400/10 border-green-400/
 
 export default function TrainingPage() {
   return (
-    <div className="min-h-screen pt-20 bg-lt-navy">
-      <div className="bg-lt-surface border-b border-lt-surface-border py-12">
+    <div className="min-h-screen bg-white">
+      <div className="bg-lt-navy py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="section-label mb-2">Digital Learning</div>
-          <h1 className="section-title mb-3">Equipment Training Academy</h1>
-          <p className="text-lt-gray-muted font-body max-w-xl mb-6">Role-based learning for operators, supervisors, fleet owners & technicians — with certifications, regional languages & gamification.</p>
+          <div className="section-label mb-2 text-lt-red">Digital Learning</div>
+          <h1 className="font-display font-bold text-5xl text-white uppercase mb-3">Equipment Training Academy</h1>
+          <p className="text-gray-400 font-body max-w-xl mb-6">Role-based learning for operators, supervisors, fleet owners & technicians — with certifications, regional languages & gamification.</p>
           <div className="flex flex-wrap gap-4 text-sm">
             {[['9+','Courses Available'],['8','Indian Languages'],['4','Certifications'],['24×7','Self-Paced Access']].map(([v,l]) => (
-              <div key={l} className="flex items-center gap-2"><span className="font-display font-bold text-xl text-lt-red">{v}</span><span className="text-lt-gray-muted font-body">{l}</span></div>
+              <div key={l} className="flex items-center gap-2"><span className="font-display font-bold text-xl text-lt-red">{v}</span><span className="text-lt-gray font-body">{l}</span></div>
             ))}
           </div>
         </div>
@@ -34,7 +34,7 @@ export default function TrainingPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {COURSES.map(c => (
-            <div key={c.id} className="card-dark flex flex-col">
+            <div key={c.id} className="card flex flex-col">
               <div className="flex items-start justify-between mb-3">
                 <span className="text-3xl">{c.icon}</span>
                 <div className="flex gap-1.5">
@@ -46,7 +46,7 @@ export default function TrainingPage() {
               <div className={`text-[10px] font-body font-bold uppercase tracking-widest mb-1 ${ROLE_COLOR[c.role]}`}>{c.role}</div>
               <h3 className="font-display font-bold text-xl text-white uppercase tracking-wide mb-3 flex-1">{c.title}</h3>
 
-              <div className="flex gap-3 text-xs text-lt-gray-muted font-body mb-4">
+              <div className="flex gap-3 text-xs text-lt-gray font-body mb-4">
                 <span className="flex items-center gap-1"><Clock size={10}/>{c.duration}</span>
                 <span className="flex items-center gap-1"><Globe size={10}/>{c.lang}</span>
               </div>
@@ -54,7 +54,7 @@ export default function TrainingPage() {
               <button className={`w-full py-2.5 rounded-xl text-sm font-body font-semibold transition-all flex items-center justify-center gap-2
                 ${c.status==='free'
                   ? 'bg-lt-red text-white hover:bg-lt-red-dark'
-                  : 'border border-lt-surface-border text-lt-gray-muted hover:border-white/20 hover:text-white'}`}>
+                  : 'border border-lt-gray-border text-lt-gray hover:border-white/20 hover:text-white'}`}>
                 {c.status==='free' ? <><Play size={13}/>Start Course</> : <><Lock size={13}/>Login to Access</>}
               </button>
             </div>
@@ -64,7 +64,7 @@ export default function TrainingPage() {
         <div className="mt-12 p-6 rounded-2xl border border-lt-gold/20 bg-lt-gold/5 text-center">
           <div className="text-2xl mb-3">🏆</div>
           <h3 className="font-display font-bold text-2xl text-white uppercase mb-2">Komatsu ATC — Asia's Premier Technical Competition</h3>
-          <p className="text-sm text-lt-gray-muted font-body mb-4 max-w-xl mx-auto">L&T engineers have consistently won at Asian ATC. Mr. Oscar D'Silva ranks 7th in the World. Prepare your technicians with our ATC-focused training modules.</p>
+          <p className="text-sm text-lt-gray font-body mb-4 max-w-xl mx-auto">L&T engineers have consistently won at Asian ATC. Mr. Oscar D'Silva ranks 7th in the World. Prepare your technicians with our ATC-focused training modules.</p>
           <button className="btn-gold flex items-center gap-2 mx-auto">
             <Award size={14}/> Start ATC Prep Course <ChevronRight size={13}/>
           </button>

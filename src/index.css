@@ -1,75 +1,71 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --lt-red:    #C8102E;
-    --lt-blue:   #003087;
-    --lt-gold:   #F5A623;
-    --lt-navy:   #0A1628;
-    --lt-card:   #1A2744;
-    --lt-border: #1E3A5F;
-  }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
     font-family: 'DM Sans', sans-serif;
-    background-color: #0A1628;
-    color: #E2E8F0;
+    background-color: #FFFFFF;
+    color: #1B2A4A;
     -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
   }
-  h1,h2,h3,h4,h5 { font-family: 'Barlow Condensed', sans-serif; letter-spacing: 0.02em; }
-  ::-webkit-scrollbar { width: 5px; height: 5px; }
-  ::-webkit-scrollbar-track { background: #0A1628; }
+  h1,h2,h3,h4,h5 {
+    font-family: 'Barlow Condensed', sans-serif;
+    letter-spacing: 0.01em;
+  }
+  ::-webkit-scrollbar       { width: 5px; }
+  ::-webkit-scrollbar-track { background: #f1f1f1; }
   ::-webkit-scrollbar-thumb { background: #C8102E; border-radius: 3px; }
 }
 
 @layer components {
+  /* Buttons */
   .btn-red {
-    @apply bg-lt-red text-white font-body font-semibold px-5 py-2.5 rounded-lg
-           hover:bg-lt-red-dark active:scale-[0.97] transition-all duration-200
-           focus:outline-none focus:ring-2 focus:ring-lt-red/40 text-sm;
+    @apply bg-lt-red text-white font-body font-semibold px-6 py-2.5 rounded
+           hover:bg-lt-red-dark active:scale-[0.98] transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-lt-red/30 text-sm;
   }
-  .btn-outline {
-    @apply border border-lt-surface-border text-lt-gray-muted font-body font-medium px-5 py-2.5 rounded-lg
-           hover:border-lt-red/50 hover:text-white active:scale-[0.97] transition-all duration-200 text-sm;
+  .btn-outline-red {
+    @apply border-2 border-lt-red text-lt-red font-body font-semibold px-6 py-2.5 rounded
+           hover:bg-lt-red hover:text-white active:scale-[0.98] transition-all duration-200 text-sm;
   }
-  .btn-gold {
-    @apply bg-lt-gold text-lt-navy font-body font-bold px-5 py-2.5 rounded-lg
-           hover:bg-lt-gold-dark active:scale-[0.97] transition-all duration-200 text-sm;
+  .btn-navy {
+    @apply bg-lt-navy text-white font-body font-semibold px-6 py-2.5 rounded
+           hover:bg-lt-navy-light active:scale-[0.98] transition-all duration-200 text-sm;
   }
-  .card-dark {
-    @apply bg-lt-surface-card border border-lt-surface-border rounded-xl p-5
-           hover:border-lt-red/30 transition-all duration-300;
+  /* Cards */
+  .card {
+    @apply bg-white rounded-lg shadow-card hover:shadow-card-hover transition-all duration-300 border border-lt-gray-border;
   }
+  .card-red {
+    @apply bg-white rounded-lg border-t-4 border-lt-red shadow-card hover:shadow-card-hover transition-all duration-300;
+  }
+  /* Typography */
   .section-label {
-    @apply text-lt-red font-display text-sm font-bold uppercase tracking-widest;
+    @apply text-lt-red font-body text-sm font-bold uppercase tracking-widest;
   }
   .section-title {
-    @apply font-display text-5xl font-bold text-white uppercase tracking-wide leading-tight;
+    @apply font-display font-bold text-lt-navy uppercase tracking-wide;
   }
-  .tag-red   { @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-lt-red/15 text-lt-red border border-lt-red/20; }
-  .tag-blue  { @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-lt-blue/20 text-blue-300 border border-lt-blue/30; }
-  .tag-gold  { @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-lt-gold/15 text-lt-gold border border-lt-gold/20; }
-  .tag-green { @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-green-500/10 text-green-400 border border-green-500/20; }
-  .divider-red { @apply h-0.5 w-12 bg-lt-red rounded-full; }
-  .glass { @apply bg-white/5 backdrop-blur-sm border border-white/10; }
-  .noise-bg {
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  .section-subtitle {
+    @apply text-lt-gray font-body leading-relaxed;
   }
-  .grid-bg {
-    background-image: linear-gradient(rgba(30,58,95,0.3) 1px, transparent 1px),
-                      linear-gradient(90deg, rgba(30,58,95,0.3) 1px, transparent 1px);
-    background-size: 40px 40px;
-  }
+  /* Tags */
+  .tag-red   { @apply inline-flex items-center gap-1 px-3 py-0.5 rounded-full text-xs font-semibold bg-lt-red-pale text-lt-red border border-lt-red/20; }
+  .tag-navy  { @apply inline-flex items-center gap-1 px-3 py-0.5 rounded-full text-xs font-semibold bg-lt-navy/10 text-lt-navy border border-lt-navy/20; }
+  .tag-gray  { @apply inline-flex items-center gap-1 px-3 py-0.5 rounded-full text-xs font-semibold bg-lt-gray-bg text-lt-gray-dark border border-lt-gray-border; }
+  /* Divider */
+  .divider-red { @apply h-1 w-12 bg-lt-red rounded-full; }
+  /* Red accent left border */
+  .border-left-red { @apply border-l-4 border-lt-red pl-4; }
 }
 
-.stagger-1 { animation-delay:0.1s; }
-.stagger-2 { animation-delay:0.2s; }
-.stagger-3 { animation-delay:0.3s; }
-.stagger-4 { animation-delay:0.4s; }
-.stagger-5 { animation-delay:0.5s; }
-.stagger-6 { animation-delay:0.6s; }
+.stagger-1 { animation-delay:.1s; }
+.stagger-2 { animation-delay:.2s; }
+.stagger-3 { animation-delay:.3s; }
+.stagger-4 { animation-delay:.4s; }
+.stagger-5 { animation-delay:.5s; }
+.stagger-6 { animation-delay:.6s; }
