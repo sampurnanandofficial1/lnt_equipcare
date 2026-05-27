@@ -1,5 +1,12 @@
 {
   "projects": {
-    "default": "lntcmmb-intelligence"
+    "default": "lntcmmb-intelligence1"
+  },
+  "targets": {
+    "lntcmmb-intelligence1": {
+      "hosting": {
+        "equipcare": ["lntcmmb-equipcare"]
+      }
+    }
   }
 }
