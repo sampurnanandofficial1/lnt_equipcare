@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --lt-red:   #C8102E;
+    --lt-blue:  #003087;
+    --lt-gold:  #F5A623;
+    --lt-dark:  #1A1A2E;
+  }
+
+  * { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: #F4F5F9;
+    color: #1A1A2E;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: 'Barlow Condensed', sans-serif;
+    letter-spacing: 0.02em;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-lt-red text-white font-body font-semibold px-6 py-3 rounded-lg
+           hover:bg-lt-red-dark transition-all duration-200 shadow-lt-red
+           active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-lt-red/40;
+  }
+
+  .btn-secondary {
+    @apply bg-lt-blue text-white font-body font-semibold px-6 py-3 rounded-lg
+           hover:bg-lt-blue-dark transition-all duration-200
+           active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-lt-blue/40;
+  }
+
+  .btn-outline {
+    @apply border-2 border-lt-blue text-lt-blue font-body font-semibold px-6 py-3 rounded-lg
+           hover:bg-lt-blue hover:text-white transition-all duration-200
+           active:scale-[0.98];
+  }
+
+  .card {
+    @apply bg-white rounded-2xl shadow-lt-card p-6
+           hover:shadow-lt-hover transition-all duration-300;
+  }
+
+  .section-title {
+    @apply font-display text-4xl font-bold text-lt-dark-800 uppercase tracking-wider;
+  }
+
+  .section-subtitle {
+    @apply font-body text-lt-gray text-lg leading-relaxed;
+  }
+
+  .tag {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold
+           bg-lt-blue/10 text-lt-blue;
+  }
+
+  .tag-red {
+    @apply tag bg-lt-red/10 text-lt-red;
+  }
+
+  .tag-gold {
+    @apply tag bg-lt-gold/15 text-lt-gold-dark;
+  }
+
+  .divider-lt {
+    @apply h-1 w-16 bg-lt-red rounded-full;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar       { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #F4F5F9; }
+::-webkit-scrollbar-thumb { background: #C8102E; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #9E0B24; }
+
+/* Stagger animation utility */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
