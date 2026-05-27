@@ -13,19 +13,19 @@ const COURSES = [
 ]
 
 const ROLE_COLOR = { Operator:'text-yellow-400', Supervisor:'text-blue-400', 'Fleet Owner':'text-lt-gold', Technician:'text-green-400' }
-const LEVEL_COLOR = { Beginner:'text-green-400 bg-green-400/10 border-green-400/20', Intermediate:'text-blue-400 bg-blue-400/10 border-blue-400/20', Advanced:'text-orange-400 bg-orange-400/10 border-orange-400/20', Expert:'text-lt-red bg-lt-red/10 border-lt-red/20' }
+const LEVEL_COLOR = { Beginner:'text-green-400 bg-green-400/10 border-green-400/20', Intermediate:'text-blue-400 bg-blue-400/10 border-blue-400/20', Advanced:'text-orange-400 bg-orange-400/10 border-orange-400/20', Expert:'text-lt-blue bg-lt-blue/10 border-lt-blue/20' }
 
 export default function TrainingPage() {
   return (
     <div className="min-h-screen bg-white">
       <div className="bg-lt-navy py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="section-label mb-2 text-lt-red">Digital Learning</div>
+          <div className="section-label mb-2 text-lt-blue">Digital Learning</div>
           <h1 className="font-display font-bold text-5xl text-white uppercase mb-3">Equipment Training Academy</h1>
           <p className="text-gray-400 font-body max-w-xl mb-6">Role-based learning for operators, supervisors, fleet owners & technicians — with certifications, regional languages & gamification.</p>
           <div className="flex flex-wrap gap-4 text-sm">
             {[['9+','Courses Available'],['8','Indian Languages'],['4','Certifications'],['24×7','Self-Paced Access']].map(([v,l]) => (
-              <div key={l} className="flex items-center gap-2"><span className="font-display font-bold text-xl text-lt-red">{v}</span><span className="text-lt-gray font-body">{l}</span></div>
+              <div key={l} className="flex items-center gap-2"><span className="font-display font-bold text-xl text-lt-blue">{v}</span><span className="text-lt-gray font-body">{l}</span></div>
             ))}
           </div>
         </div>
@@ -53,7 +53,7 @@ export default function TrainingPage() {
 
               <button className={`w-full py-2.5 rounded-xl text-sm font-body font-semibold transition-all flex items-center justify-center gap-2
                 ${c.status==='free'
-                  ? 'bg-lt-red text-white hover:bg-lt-red-dark'
+                  ? 'bg-lt-blue text-white hover:bg-lt-blue-dark'
                   : 'border border-lt-gray-border text-lt-gray hover:border-white/20 hover:text-white'}`}>
                 {c.status==='free' ? <><Play size={13}/>Start Course</> : <><Lock size={13}/>Login to Access</>}
               </button>

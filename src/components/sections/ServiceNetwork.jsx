@@ -19,7 +19,7 @@ export default function ServiceNetwork() {
         <div className="text-center mb-14">
           <div className="section-label mb-3">Pan-India Coverage</div>
           <h2 className="section-title text-4xl sm:text-5xl mb-4">6 World-Class Service Centers</h2>
-          <div className="divider-red mx-auto mb-5"/>
+          <div className="divider-blue mx-auto mb-5"/>
           <p className="section-subtitle max-w-xl mx-auto">First Asian distributor to receive Komatsu Level 3 Gold Rebuild Certification.</p>
         </div>
 
@@ -27,7 +27,7 @@ export default function ServiceNetwork() {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
           {[['6','Service Centers','Pan-India'],['4','Marketing Zones','N / S / E / W'],['92%','Machine Availability','Under Contract'],['24×7','On-Site Support','1,100+ engineers']].map(([v,l,s]) => (
             <div key={l} className="card p-5 text-center">
-              <div className="font-display font-black text-3xl text-lt-red">{v}</div>
+              <div className="font-display font-black text-3xl text-lt-blue">{v}</div>
               <div className="text-sm font-body font-semibold text-lt-navy mt-1">{l}</div>
               <div className="text-xs text-lt-gray font-body">{s}</div>
             </div>
@@ -37,11 +37,11 @@ export default function ServiceNetwork() {
         {/* Center cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {CENTERS.map(c => (
-            <div key={c.name} className="card-red p-5">
+            <div key={c.name} className="card-blue p-5">
               <div className="flex items-start justify-between mb-3">
                 <div>
                   <div className="flex items-center gap-1.5 mb-0.5">
-                    <MapPin size={13} className="text-lt-red"/>
+                    <MapPin size={13} className="text-lt-blue"/>
                     <span className="font-display font-bold text-xl text-lt-navy uppercase">{c.name}</span>
                   </div>
                   <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${ZONE[c.zone]}`}>{c.zone} Zone</span>
@@ -58,7 +58,7 @@ export default function ServiceNetwork() {
                 </div>
                 <div className="bg-lt-gray-bg rounded p-2 text-center">
                   <div className="text-[10px] text-lt-gray font-body">CE Fleet</div>
-                  <div className="text-sm font-display font-bold text-lt-red">{c.ce?.toLocaleString()||'—'}</div>
+                  <div className="text-sm font-display font-bold text-lt-blue">{c.ce?.toLocaleString()||'—'}</div>
                 </div>
                 <div className="bg-lt-gray-bg rounded p-2 text-center">
                   <div className="text-[10px] text-lt-gray font-body">ME Fleet</div>

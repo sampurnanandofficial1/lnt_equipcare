@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -12,40 +12,46 @@
     color: #1B2A4A;
     -webkit-font-smoothing: antialiased;
   }
-  h1,h2,h3,h4,h5 {
-    font-family: 'Barlow Condensed', sans-serif;
-    letter-spacing: 0.01em;
-  }
+  h1,h2,h3,h4,h5 { font-family: 'Barlow Condensed', sans-serif; letter-spacing: 0.01em; }
   ::-webkit-scrollbar       { width: 5px; }
-  ::-webkit-scrollbar-track { background: #f1f1f1; }
-  ::-webkit-scrollbar-thumb { background: #C8102E; border-radius: 3px; }
+  ::-webkit-scrollbar-track { background: #F7F8FA; }
+  ::-webkit-scrollbar-thumb { background: #003087; border-radius: 3px; }
 }
 
 @layer components {
-  /* Buttons */
-  .btn-red {
-    @apply bg-lt-red text-white font-body font-semibold px-6 py-2.5 rounded
-           hover:bg-lt-red-dark active:scale-[0.98] transition-all duration-200
-           focus:outline-none focus:ring-2 focus:ring-lt-red/30 text-sm;
+  /* ── Primary Button — Blue ──────────────────────── */
+  .btn-primary {
+    @apply bg-lt-blue text-white font-body font-semibold px-6 py-2.5 rounded
+           hover:bg-lt-blue-dark active:scale-[0.98] transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-lt-blue/30 text-sm shadow-blue;
   }
-  .btn-outline-red {
-    @apply border-2 border-lt-red text-lt-red font-body font-semibold px-6 py-2.5 rounded
-           hover:bg-lt-red hover:text-white active:scale-[0.98] transition-all duration-200 text-sm;
+  /* ── Accent Button — Yellow ─────────────────────── */
+  .btn-yellow {
+    @apply bg-lt-yellow text-lt-navy font-body font-bold px-6 py-2.5 rounded
+           hover:bg-lt-yellow-dark active:scale-[0.98] transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-lt-yellow/30 text-sm shadow-yellow;
   }
-  .btn-navy {
-    @apply bg-lt-navy text-white font-body font-semibold px-6 py-2.5 rounded
-           hover:bg-lt-navy-light active:scale-[0.98] transition-all duration-200 text-sm;
+  /* ── Outline Button — Blue ──────────────────────── */
+  .btn-outline {
+    @apply border-2 border-lt-blue text-lt-blue font-body font-semibold px-6 py-2.5 rounded
+           hover:bg-lt-blue hover:text-white active:scale-[0.98] transition-all duration-200 text-sm;
   }
-  /* Cards */
+  /* ── Cards ──────────────────────────────────────── */
   .card {
-    @apply bg-white rounded-lg shadow-card hover:shadow-card-hover transition-all duration-300 border border-lt-gray-border;
+    @apply bg-white rounded-lg shadow-card hover:shadow-card-hover
+           transition-all duration-300 border border-lt-gray-border;
   }
-  .card-red {
-    @apply bg-white rounded-lg border-t-4 border-lt-red shadow-card hover:shadow-card-hover transition-all duration-300;
+  .card-blue {
+    @apply bg-white rounded-lg border-t-4 border-lt-blue
+           shadow-card hover:shadow-card-hover transition-all duration-300;
   }
-  /* Typography */
+  .card-yellow {
+    @apply bg-white rounded-lg border-t-4 border-lt-yellow
+           shadow-card hover:shadow-card-hover transition-all duration-300;
+  }
+  /* ── Typography ─────────────────────────────────── */
   .section-label {
-    @apply text-lt-red font-body text-sm font-bold uppercase tracking-widest;
+    @apply text-lt-blue font-body text-sm font-bold uppercase tracking-widest;
   }
   .section-title {
     @apply font-display font-bold text-lt-navy uppercase tracking-wide;
@@ -53,14 +59,13 @@
   .section-subtitle {
     @apply text-lt-gray font-body leading-relaxed;
   }
-  /* Tags */
-  .tag-red   { @apply inline-flex items-center gap-1 px-3 py-0.5 rounded-full text-xs font-semibold bg-lt-red-pale text-lt-red border border-lt-red/20; }
-  .tag-navy  { @apply inline-flex items-center gap-1 px-3 py-0.5 rounded-full text-xs font-semibold bg-lt-navy/10 text-lt-navy border border-lt-navy/20; }
-  .tag-gray  { @apply inline-flex items-center gap-1 px-3 py-0.5 rounded-full text-xs font-semibold bg-lt-gray-bg text-lt-gray-dark border border-lt-gray-border; }
-  /* Divider */
-  .divider-red { @apply h-1 w-12 bg-lt-red rounded-full; }
-  /* Red accent left border */
-  .border-left-red { @apply border-l-4 border-lt-red pl-4; }
+  /* ── Tags ───────────────────────────────────────── */
+  .tag-blue   { @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-lt-blue-pale text-lt-blue border border-lt-blue/20; }
+  .tag-yellow { @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-lt-yellow-pale text-lt-yellow-dark border border-lt-yellow/30; }
+  .tag-gray   { @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-lt-gray-bg text-lt-gray-dark border border-lt-gray-border; }
+  /* ── Divider ────────────────────────────────────── */
+  .divider-blue   { @apply h-1 w-12 bg-lt-blue rounded-full; }
+  .divider-yellow { @apply h-1 w-12 bg-lt-yellow rounded-full; }
 }
 
 .stagger-1 { animation-delay:.1s; }

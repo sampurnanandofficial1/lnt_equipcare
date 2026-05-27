@@ -23,14 +23,14 @@ export default function ServicesPage() {
     setLoading(false)
   }
 
-  const inputCls = "w-full card px-4 py-2.5 text-sm text-lt-navy placeholder-lt-gray font-body focus:outline-none focus:border-lt-red transition-colors"
+  const inputCls = "w-full card px-4 py-2.5 text-sm text-lt-navy placeholder-lt-gray font-body focus:outline-none focus:border-lt-blue transition-colors"
   const selectCls = `${inputCls} cursor-pointer`
 
   return (
     <div className="min-h-screen bg-white" style={{ paddingTop:'100px' }}>
       <div className="bg-lt-navy py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="section-label mb-2 text-lt-red">Service & Support</div>
+          <div className="section-label mb-2 text-lt-blue">Service & Support</div>
           <h1 className="font-display font-bold text-5xl text-white uppercase mb-3">Service Management</h1>
           <p className="text-gray-400 font-body max-w-xl">Book service, track AMC, manage warranties & raise breakdown requests — all in one place.</p>
         </div>
@@ -43,7 +43,7 @@ export default function ServicesPage() {
           <div className="lg:col-span-2">
             <div className="card-dark">
               <div className="flex items-center gap-3 mb-6">
-                <Wrench size={20} className="text-lt-red"/>
+                <Wrench size={20} className="text-lt-blue"/>
                 <h2 className="font-display font-bold text-2xl text-white uppercase">Book a Service Request</h2>
               </div>
 
@@ -89,7 +89,7 @@ export default function ServicesPage() {
                       className={`${inputCls} resize-none`}/></div>
                   <div className="sm:col-span-2">
                     <button onClick={handleSubmit} disabled={loading || !form.name || !form.phone}
-                      className="btn-red flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                      className="btn-primary flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
                       {loading ? <Loader2 size={14} className="animate-spin"/> : <Wrench size={14}/>}
                       Submit Service Request
                     </button>
@@ -102,7 +102,7 @@ export default function ServicesPage() {
           {/* Sidebar info */}
           <div className="space-y-5">
             <div className="card-dark">
-              <div className="flex items-center gap-2 mb-4"><Calendar size={16} className="text-lt-red"/><h3 className="font-display font-bold text-lg text-white uppercase">Response Times</h3></div>
+              <div className="flex items-center gap-2 mb-4"><Calendar size={16} className="text-lt-blue"/><h3 className="font-display font-bold text-lg text-white uppercase">Response Times</h3></div>
               {[['Breakdown','2–4 hours','Critical'],['PM Service','24 hours','Normal'],['Component Overhaul','48 hours','Planned'],['AMC Renewal','Same day','Admin']].map(([t,r,p]) => (
                 <div key={t} className="flex items-center justify-between py-2 border-b border-lt-gray-border/50 last:border-0">
                   <div><div className="text-sm font-body text-white">{t}</div><div className="text-xs text-lt-gray">{p}</div></div>
@@ -121,10 +121,10 @@ export default function ServicesPage() {
               ))}
             </div>
 
-            <div className="p-4 rounded-xl bg-lt-red-pale border border-lt-red/30">
-              <div className="text-xs font-body font-bold text-lt-red uppercase tracking-wider mb-2">Emergency Breakdown?</div>
+            <div className="p-4 rounded-xl bg-lt-blue-pale border border-lt-blue/30">
+              <div className="text-xs font-body font-bold text-lt-blue uppercase tracking-wider mb-2">Emergency Breakdown?</div>
               <p className="text-xs text-lt-gray font-body mb-3">Call Equipcare directly for immediate field dispatch.</p>
-              <a href="tel:1800XXXXXXX" className="btn-red w-full text-center flex items-center justify-center gap-1.5 text-xs">
+              <a href="tel:1800XXXXXXX" className="btn-primary w-full text-center flex items-center justify-center gap-1.5 text-xs">
                 📞 1800-XXX-XXXX (24×7)
               </a>
             </div>

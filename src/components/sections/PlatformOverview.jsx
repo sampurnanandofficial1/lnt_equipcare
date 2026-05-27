@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { Bot, BookOpen, Settings, LifeBuoy, BarChart3, Users, ArrowRight } from 'lucide-react'
 
 const MODULES = [
-  { id:1, icon:Bot,       color:'bg-lt-red text-white',    label:'Module 1', title:'AI Language Assistant',     desc:'Voice + text AI in 10+ Indian languages. First-level troubleshooting & Equipcare escalation.', tags:['Voice','10+ Languages','24×7'], href:'/support' },
+  { id:1, icon:Bot,       color:'bg-lt-blue text-white',    label:'Module 1', title:'AI Language Assistant',     desc:'Voice + text AI in 10+ Indian languages. First-level troubleshooting & Equipcare escalation.', tags:['Voice','10+ Languages','24×7'], href:'/support' },
   { id:2, icon:BookOpen,  color:'bg-lt-navy text-white',   label:'Module 2', title:'Self-Help & Troubleshooting',desc:'Visual guides, error code library, maintenance SOPs & downloadable manuals for all equipment.',  tags:['Error Codes','Video Guides','Offline'], href:'/support' },
   { id:3, icon:Users,     color:'bg-orange-500 text-white',label:'Module 3', title:'Digital Training Academy',  desc:'Role-based learning for operators, supervisors, fleet owners & technicians with certifications.',  tags:['Certifications','Role-Based','Regional Language'], href:'/training' },
   { id:4, icon:Settings,  color:'bg-green-600 text-white', label:'Module 4', title:'Service Management',        desc:'AMC tracking, service history, breakdown requests, maintenance reminders & ticket management.',   tags:['AMC Tracker','Live Status','Spare Parts'], href:'/services' },
@@ -19,7 +19,7 @@ export default function PlatformOverview() {
         <div className="text-center mb-14">
           <div className="section-label mb-3">Platform Architecture</div>
           <h2 className="section-title text-4xl sm:text-5xl mb-4">Complete Platform Storyboard</h2>
-          <div className="divider-red mx-auto mb-5"/>
+          <div className="divider-blue mx-auto mb-5"/>
           <p className="section-subtitle max-w-2xl mx-auto">
             Six integrated modules covering the entire machine lifecycle — from daily inspection to full overhaul.
           </p>
@@ -30,7 +30,7 @@ export default function PlatformOverview() {
           {['Customer Need','→','AI Response','→','Self Resolution','→','Service Request','→','Expert Intervention','→','Machine Uptime'].map((s,i) => (
             <span key={i}
               className={s==='→'
-                ? 'text-lt-red text-base font-bold px-1'
+                ? 'text-lt-blue text-base font-bold px-1'
                 : 'px-3 py-1.5 rounded border border-lt-gray-border bg-white text-lt-gray-dark shadow-sm'}>
               {s}
             </span>
@@ -55,7 +55,7 @@ export default function PlatformOverview() {
                 <div className="flex flex-wrap gap-1.5 mb-4">
                   {m.tags.map(t => <span key={t} className="tag-gray text-[10px]">{t}</span>)}
                 </div>
-                <div className="flex items-center gap-1.5 text-xs font-body font-semibold text-lt-red group-hover:gap-3 transition-all">
+                <div className="flex items-center gap-1.5 text-xs font-body font-semibold text-lt-blue group-hover:gap-3 transition-all">
                   Explore <ArrowRight size={12}/>
                 </div>
               </div>

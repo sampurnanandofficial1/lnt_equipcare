@@ -18,7 +18,7 @@ export default function Footer() {
             {/* Brand */}
             <div className="lg:col-span-2">
               <div className="flex items-center gap-3 mb-5">
-                <div className="w-10 h-10 bg-lt-red rounded flex items-center justify-center">
+                <div className="w-10 h-10 bg-lt-blue rounded flex items-center justify-center">
                   <span className="font-display font-black text-white text-sm">L&T</span>
                 </div>
                 <div>
@@ -31,14 +31,14 @@ export default function Footer() {
               </p>
               <div className="space-y-2.5 text-sm">
                 <a href="tel:18008339990" className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors font-body">
-                  <Phone size={13} className="text-lt-red flex-shrink-0"/> 1800-833-9990 / 1800-266-9990
+                  <Phone size={13} className="text-lt-blue flex-shrink-0"/> 1800-833-9990 / 1800-266-9990
                 </a>
                 <a href="mailto:CMB@larsentoubro.com" className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors font-body">
-                  <Mail size={13} className="text-lt-red flex-shrink-0"/> CMB@larsentoubro.com
+                  <Mail size={13} className="text-lt-blue flex-shrink-0"/> CMB@larsentoubro.com
                 </a>
               </div>
               <div className="mt-5">
-                <div className="text-xs text-lt-red font-body font-semibold uppercase tracking-wider mb-2">6 Service Centers</div>
+                <div className="text-xs text-lt-blue font-body font-semibold uppercase tracking-wider mb-2">6 Service Centers</div>
                 <div className="flex flex-wrap gap-1.5">
                   {CENTERS.map(c => <span key={c} className="text-xs px-2 py-0.5 rounded border border-white/10 text-gray-400 font-body">{c}</span>)}
                 </div>
@@ -48,7 +48,7 @@ export default function Footer() {
             {/* Links */}
             {Object.entries(LINKS).map(([cat, links]) => (
               <div key={cat}>
-                <div className="text-xs font-body font-semibold text-lt-red uppercase tracking-wider mb-4">{cat}</div>
+                <div className="text-xs font-body font-semibold text-lt-blue uppercase tracking-wider mb-4">{cat}</div>
                 <ul className="space-y-2.5">
                   {links.map(l => (
                     <li key={l.l}>

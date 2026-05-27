@@ -2,12 +2,12 @@ import { Link } from 'react-router-dom'
 import { Bot, Phone, ArrowRight, Shield, Activity, Users, Package, Building2, MapPin } from 'lucide-react'
 
 const STATS = [
-  { value:'910+',   label:'Machines Under Contract', icon: Activity,  color:'text-lt-red'   },
+  { value:'910+',   label:'Machines Under Contract', icon: Activity,  color:'text-lt-blue'   },
   { value:'1,500+', label:'Engineers & Technicians', icon: Users,     color:'text-lt-navy'  },
   { value:'92%',    label:'Machine Availability',    icon: Shield,    color:'text-green-600'},
   { value:'6',      label:'Service Centers',         icon: Building2, color:'text-orange-500'},
   { value:'40,000', label:'Spare Parts SKUs',        icon: Package,   color:'text-lt-navy'  },
-  { value:'100+',   label:'Active Project Sites',    icon: MapPin,    color:'text-lt-red'   },
+  { value:'100+',   label:'Active Project Sites',    icon: MapPin,    color:'text-lt-blue'   },
 ]
 
 export default function Hero({ onChatOpen }) {
@@ -41,14 +41,14 @@ export default function Hero({ onChatOpen }) {
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 h-full flex flex-col justify-center">
             <div className="max-w-2xl">
               {/* Badge */}
-              <div className="inline-flex items-center gap-2 bg-lt-red text-white text-xs font-body font-semibold px-4 py-1.5 rounded mb-6 uppercase tracking-wider">
+              <div className="inline-flex items-center gap-2 bg-lt-yellow text-lt-navy text-xs font-body font-semibold px-4 py-1.5 rounded mb-6 uppercase tracking-wider">
                 <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse"/>
                 India's Leading Equipment Service Platform
               </div>
 
               <h1 className="font-display font-black text-white uppercase leading-none tracking-wide mb-4">
                 <span className="block text-5xl sm:text-6xl lg:text-7xl">L&T Equipcare</span>
-                <span className="block text-2xl sm:text-3xl text-red-300 mt-2 font-semibold">
+                <span className="block text-2xl sm:text-3xl text-blue-200 mt-2 font-semibold">
                   24×7 Digital Service Ecosystem
                 </span>
               </h1>
@@ -60,12 +60,12 @@ export default function Hero({ onChatOpen }) {
 
               <div className="flex flex-wrap gap-3">
                 <button onClick={onChatOpen}
-                  className="flex items-center gap-2 bg-lt-red text-white font-body font-semibold px-6 py-3 rounded
-                             hover:bg-lt-red-dark transition-all shadow-red">
+                  className="flex items-center gap-2 bg-lt-blue text-white font-body font-semibold px-6 py-3 rounded
+                             hover:bg-lt-blue-dark transition-all shadow-blue">
                   <Bot size={16}/> Talk to AI Assistant
                 </button>
                 <Link to="/services"
-                  className="flex items-center gap-2 bg-white text-lt-navy font-body font-semibold px-6 py-3 rounded
+                  className="flex items-center gap-2 bg-lt-yellow text-lt-navy font-body font-bold px-6 py-3 rounded
                              hover:bg-lt-gray-bg transition-all">
                   Book Service <ArrowRight size={15}/>
                 </Link>

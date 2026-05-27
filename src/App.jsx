@@ -27,8 +27,8 @@ export default function App() {
       <Footer/>
       {!chatOpen && (
         <button onClick={() => setChatOpen(true)}
-          className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-lt-red rounded-full flex items-center justify-center
-                     shadow-red hover:bg-lt-red-dark transition-all hover:scale-110">
+          className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-lt-blue rounded-full flex items-center justify-center
+                     shadow-blue hover:bg-lt-blue-dark transition-all hover:scale-110">
           <Bot size={24} className="text-white"/>
         </button>
       )}

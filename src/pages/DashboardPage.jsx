@@ -9,8 +9,8 @@ const MACHINES = [
   { id:'GD705-5',  model:'GD705', serial:'K50166', site:'NH-48 Road',      health:88, hours:2100, status:'Active',  nextPM:'200 hrs' },
 ]
 
-const HEALTH_COLOR = h => h >= 90 ? 'text-green-400' : h >= 75 ? 'text-lt-gold' : 'text-lt-red'
-const STATUS_STYLE = { Active:'text-green-400 bg-green-400/10 border-green-400/20', 'PM Due':'text-lt-gold bg-lt-gold/10 border-lt-gold/20', Service:'text-lt-red bg-lt-red/10 border-lt-red/20' }
+const HEALTH_COLOR = h => h >= 90 ? 'text-green-400' : h >= 75 ? 'text-lt-gold' : 'text-lt-blue'
+const STATUS_STYLE = { Active:'text-green-400 bg-green-400/10 border-green-400/20', 'PM Due':'text-lt-gold bg-lt-gold/10 border-lt-gold/20', Service:'text-lt-blue bg-lt-blue/10 border-lt-blue/20' }
 
 export default function DashboardPage() {
   const [role, setRole] = useState('fleet')
@@ -27,7 +27,7 @@ export default function DashboardPage() {
             {[['fleet','Fleet Owner'],['operator','Operator'],['supervisor','Supervisor']].map(([id,label]) => (
               <button key={id} onClick={() => setRole(id)}
                 className={`px-4 py-2 rounded-lg text-xs font-body font-semibold transition-all
-                  ${role===id ? 'bg-lt-red text-white' : 'text-lt-gray hover:text-white'}`}>
+                  ${role===id ? 'bg-lt-blue text-white' : 'text-lt-gray hover:text-white'}`}>
                 {label}
               </button>
             ))}
@@ -40,7 +40,7 @@ export default function DashboardPage() {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
           {[
             { icon:Activity,        label:'Fleet Availability',  value:'84%', sub:'3 machines active', color:'text-green-400' },
-            { icon:AlertTriangle,   label:'Alerts',              value:'2',   sub:'Action needed',    color:'text-lt-red'   },
+            { icon:AlertTriangle,   label:'Alerts',              value:'2',   sub:'Action needed',    color:'text-lt-blue'   },
             { icon:Clock,           label:'Avg Machine Age',     value:'1,906', sub:'hours',           color:'text-blue-400' },
             { icon:TrendingUp,      label:'Uptime This Month',   value:'91%', sub:'vs 88% last month', color:'text-lt-gold'  },
           ].map(k => (
@@ -60,7 +60,7 @@ export default function DashboardPage() {
         <div className="card mb-6">
           <div className="flex items-center justify-between mb-5">
             <div className="flex items-center gap-2">
-              <Package size={16} className="text-lt-red"/>
+              <Package size={16} className="text-lt-blue"/>
               <h2 className="font-display font-bold text-xl text-white uppercase">Machine Health Monitor</h2>
             </div>
             <span className="text-xs text-lt-gray font-body">{MACHINES.length} machines</span>
@@ -83,20 +83,20 @@ export default function DashboardPage() {
                     <td className="py-3 pr-4">
                       <div className="flex items-center gap-2">
                         <div className="w-20 h-1.5 bg-lt-surface-border rounded-full overflow-hidden">
-                          <div className={`h-full rounded-full ${m.health>=90?'bg-green-400':m.health>=75?'bg-lt-gold':'bg-lt-red'}`} style={{width:`${m.health}%`}}/>
+                          <div className={`h-full rounded-full ${m.health>=90?'bg-green-400':m.health>=75?'bg-lt-gold':'bg-lt-blue'}`} style={{width:`${m.health}%`}}/>
                         </div>
                         <span className={`text-xs font-bold ${HEALTH_COLOR(m.health)}`}>{m.health}%</span>
                       </div>
                     </td>
                     <td className="py-3 pr-4 text-lt-gray-dark text-xs">{m.hours.toLocaleString()}</td>
                     <td className="py-3 pr-4">
-                      <span className={`text-xs font-bold ${m.nextPM==='Overdue'?'text-lt-red':m.nextPM==='—'?'text-lt-gray':'text-lt-gray-dark'}`}>{m.nextPM}</span>
+                      <span className={`text-xs font-bold ${m.nextPM==='Overdue'?'text-lt-blue':m.nextPM==='—'?'text-lt-gray':'text-lt-gray-dark'}`}>{m.nextPM}</span>
                     </td>
                     <td className="py-3 pr-4">
                       <span className={`text-[10px] px-2 py-0.5 rounded-full border font-bold ${STATUS_STYLE[m.status]}`}>{m.status}</span>
                     </td>
                     <td className="py-3">
-                      <button className="text-xs text-lt-red hover:underline font-body font-semibold whitespace-nowrap">Book Service →</button>
+                      <button className="text-xs text-lt-blue hover:underline font-body font-semibold whitespace-nowrap">Book Service →</button>
                     </td>
                   </tr>
                 ))}
@@ -112,7 +112,7 @@ export default function DashboardPage() {
             {[['PC210 — Pune Site','FMC/MARC','Expires Dec 2025','Active'],['D155 — Nagpur Mine','CMC','Expires Mar 2026','Active'],['HD465 — Singrauli','SSA','Expires Aug 2025','Renewal Due']].map(([m,type,exp,st]) => (
               <div key={m} className="flex items-center justify-between py-2.5 border-b border-lt-gray-border/50 last:border-0">
                 <div><div className="text-sm font-body text-white">{m}</div><div className="text-xs text-lt-gray">{type} · {exp}</div></div>
-                <span className={`text-xs px-2 py-0.5 rounded-full border font-bold ${st==='Active'?'text-green-400 bg-green-400/10 border-green-400/20':'text-lt-red bg-lt-red/10 border-lt-red/20'}`}>{st}</span>
+                <span className={`text-xs px-2 py-0.5 rounded-full border font-bold ${st==='Active'?'text-green-400 bg-green-400/10 border-green-400/20':'text-lt-blue bg-lt-blue/10 border-lt-blue/20'}`}>{st}</span>
               </div>
             ))}
           </div>
