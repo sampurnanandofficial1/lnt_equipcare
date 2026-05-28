@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   id-token: write
 
 jobs:
@@ -59,15 +59,24 @@ jobs:
           firebase target:apply hosting equipcare lntcmmb-equipcare \
             --project lntcmmb-intelligence1
 
-      - name: Deploy Hosting only
+      - name: Deploy Hosting — capture error output
         run: |
           firebase deploy \
             --only hosting:equipcare \
-            --project lntcmmb-intelligence1
+            --project lntcmmb-intelligence1 \
+            --debug 2>&1 | tee /tmp/deploy_output.txt
+          echo "Exit code: $?"
+
+      - name: Write deploy log to repo on failure
+        if: failure()
+        run: |
+          mkdir -p deploy-logs
+          cp /tmp/deploy_output.txt deploy-logs/last_error.txt
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+          git add deploy-logs/last_error.txt
+          git commit -m "debug: capture deploy error log" || true
+          git push || true
 
       - name: Print live URL
-        run: |
-          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-          echo "✅  L&T Equipcare is LIVE on Firebase Hosting"
-          echo "🌐  https://lntcmmb-equipcare.web.app"
-          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+        run: echo "🌐 https://lntcmmb-equipcare.web.app"
