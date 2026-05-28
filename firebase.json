@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site":    "lntcmmb-equipcare-6cabd",
+    "site":    "lntcmmb-equipcare",
     "public":  "dist",
     "ignore":  ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
