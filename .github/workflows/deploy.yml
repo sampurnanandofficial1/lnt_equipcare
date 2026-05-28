@@ -6,21 +6,12 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages:    write
-  id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: true
+  contents: write
 
 jobs:
   deploy:
     name: Build & Deploy
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - uses: actions/checkout@v4
@@ -44,14 +35,10 @@ jobs:
           VITE_FIREBASE_APP_ID:              1:37497109814:web:eec6c70fc99f8264c6c797
           VITE_FIREBASE_MEASUREMENT_ID:      G-M3NH5FDXZ1
 
-      - uses: actions/configure-pages@v4
-
-      - uses: actions/upload-pages-artifact@v3
+      - name: Deploy to gh-pages branch
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          path: dist
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir:  ./dist
 
       - run: echo "✅ LIVE https://sampurnanandofficial1.github.io/lnt_equipcare/"
