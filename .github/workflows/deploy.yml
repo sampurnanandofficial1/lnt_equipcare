@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
   id-token: write
 
 jobs:
@@ -24,7 +24,7 @@ jobs:
           node-version: '22'
           cache: 'npm'
 
-      - name: Install frontend dependencies
+      - name: Install dependencies
         run: npm install
 
       - name: Build React app
@@ -46,37 +46,14 @@ jobs:
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
 
-      - name: Create Firebase Hosting site (if not exists)
-        run: |
-          firebase hosting:sites:create lntcmmb-equipcare \
-            --project lntcmmb-intelligence1 2>/dev/null \
-            && echo "✅ Site created" \
-            || echo "ℹ️  Site already exists"
-        continue-on-error: true
-
-      - name: Apply hosting target
-        run: |
-          firebase target:apply hosting equipcare lntcmmb-equipcare \
-            --project lntcmmb-intelligence1
-
-      - name: Deploy Hosting — capture error output
+      - name: Deploy to Firebase Hosting
         run: |
           firebase deploy \
-            --only hosting:equipcare \
-            --project lntcmmb-intelligence1 \
-            --debug 2>&1 | tee /tmp/deploy_output.txt
-          echo "Exit code: $?"
+            --only hosting \
+            --project lntcmmb-intelligence1
 
-      - name: Write deploy log to repo on failure
-        if: failure()
+      - name: Confirm live URL
         run: |
-          mkdir -p deploy-logs
-          cp /tmp/deploy_output.txt deploy-logs/last_error.txt
-          git config user.email "actions@github.com"
-          git config user.name "GitHub Actions"
-          git add deploy-logs/last_error.txt
-          git commit -m "debug: capture deploy error log" || true
-          git push || true
-
-      - name: Print live URL
-        run: echo "🌐 https://lntcmmb-equipcare.web.app"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "✅  LIVE: https://lntcmmb-equipcare.web.app"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
