@@ -1,16 +1,12 @@
-name: Deploy L&T Equipcare to GitHub Pages
+name: Deploy to Firebase Hosting
 
 on:
   push:
     branches: [ main ]
   workflow_dispatch:
 
-permissions:
-  contents: write
-
 jobs:
   deploy:
-    name: Build & Deploy
     runs-on: ubuntu-latest
 
     steps:
@@ -24,7 +20,7 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build
+      - name: Build React app
         run: npm run build
         env:
           VITE_FIREBASE_API_KEY:             ${{ secrets.VITE_FIREBASE_API_KEY }}
@@ -35,10 +31,33 @@ jobs:
           VITE_FIREBASE_APP_ID:              1:37497109814:web:eec6c70fc99f8264c6c797
           VITE_FIREBASE_MEASUREMENT_ID:      G-M3NH5FDXZ1
 
-      - name: Deploy to gh-pages branch
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir:  ./dist
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools
 
-      - run: echo "✅ LIVE https://sampurnanandofficial1.github.io/lnt_equipcare/"
+      - name: Write service account to file
+        run: |
+          echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}' > /tmp/sa.json
+          echo "SA written. Project: $(python3 -c "import json; print(json.load(open('/tmp/sa.json')).get('project_id','?'))")"
+
+      - name: Create hosting site if not exists
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: /tmp/sa.json
+        run: |
+          PROJECT=$(python3 -c "import json; print(json.load(open('/tmp/sa.json')).get('project_id','lntcmmb-intelligence1'))")
+          echo "Project: $PROJECT"
+          firebase hosting:sites:create lntcmmb-equipcare --project "$PROJECT" 2>&1 | head -5 || true
+
+      - name: Deploy to Firebase Hosting
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: /tmp/sa.json
+        run: |
+          PROJECT=$(python3 -c "import json; print(json.load(open('/tmp/sa.json')).get('project_id','lntcmmb-intelligence1'))")
+          echo "Deploying to project: $PROJECT → site: lntcmmb-equipcare"
+          firebase deploy --only hosting --project "$PROJECT" --debug 2>&1 | tail -30
+
+      - name: Clean up credentials
+        if: always()
+        run: rm -f /tmp/sa.json
+
+      - name: Live URL
+        run: echo "✅ LIVE → https://lntcmmb-equipcare.web.app"
