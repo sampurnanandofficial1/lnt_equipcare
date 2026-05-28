@@ -1,0 +1,21 @@
+[2026-05-28T06:03:22.643Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[2026-05-28T06:03:22.731Z] Running auto auth
+[2026-05-28T06:03:22.731Z] [iam] checking project lntcmmb-intelligence for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[2026-05-28T06:03:22.732Z] No OAuth tokens found
+[2026-05-28T06:03:22.733Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/lntcmmb-intelligence:testIamPermissions [none]
+[2026-05-28T06:03:22.733Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/lntcmmb-intelligence:testIamPermissions  x-goog-user-project=lntcmmb-intelligence
+[2026-05-28T06:03:22.733Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/lntcmmb-intelligence:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[2026-05-28T06:03:22.790Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/lntcmmb-intelligence:testIamPermissions 403
+[2026-05-28T06:03:22.790Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/lntcmmb-intelligence:testIamPermissions {"error":{"code":403,"message":"Project lntcmmb-intelligence has been deleted.","status":"PERMISSION_DENIED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"USER_PROJECT_DENIED","domain":"googleapis.com","metadata":{"service":"cloudresourcemanager.googleapis.com","consumer":"projects/lntcmmb-intelligence","containerInfo":"lntcmmb-intelligence"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"Project lntcmmb-intelligence has been deleted."}]}}
+[2026-05-28T06:03:22.791Z] [iam] error while checking permissions, command may fail: Request to https://cloudresourcemanager.googleapis.com/v1/projects/lntcmmb-intelligence:testIamPermissions had HTTP Error: 403, Project lntcmmb-intelligence has been deleted.
+[2026-05-28T06:03:22.791Z] No OAuth tokens found
+[2026-05-28T06:03:22.792Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/lntcmmb-intelligence [none]
+[2026-05-28T06:03:22.868Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/lntcmmb-intelligence 403
+[2026-05-28T06:03:22.869Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/lntcmmb-intelligence {"error":{"code":403,"message":"Project #37497109814 has been deleted.","status":"PERMISSION_DENIED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"CONSUMER_INVALID","domain":"googleapis.com","metadata":{"containerInfo":"#37497109814","service":"firebase.googleapis.com","consumer":"projects/37497109814"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"Project #37497109814 has been deleted."},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Google developer console API key","url":"https://console.developers.google.com/project/37497109814/apiui/credential"}]}]}}
+[2026-05-28T06:03:22.869Z] Request to https://firebase.googleapis.com/v1beta1/projects/lntcmmb-intelligence had HTTP Error: 403, Project #37497109814 has been deleted.
+[2026-05-28T06:03:22.870Z] FirebaseError: Request to https://firebase.googleapis.com/v1beta1/projects/lntcmmb-intelligence had HTTP Error: 403, Project #37497109814 has been deleted.
+    at responseToError (/opt/hostedtoolcache/node/22.22.3/x64/lib/node_modules/firebase-tools/lib/responseToError.js:53:12)
+    at RetryOperation._fn (/opt/hostedtoolcache/node/22.22.3/x64/lib/node_modules/firebase-tools/lib/apiv2.js:333:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+
+Error: Failed to get Firebase project lntcmmb-intelligence. Please make sure the project exists and your account has permission to access it.
