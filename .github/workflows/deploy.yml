@@ -46,11 +46,28 @@ jobs:
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
 
+      - name: Debug — list accessible projects
+        run: firebase projects:list
+        continue-on-error: true
+
+      - name: Debug — show project from SA
+        run: |
+          echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}' | python3 -c "
+import sys, json
+try:
+    data = json.load(sys.stdin)
+    print('Project ID from SA:', data.get('project_id','NOT FOUND'))
+    print('SA email:', data.get('client_email','NOT FOUND'))
+except Exception as e:
+    print('Parse error:', e)
+"
+        continue-on-error: true
+
       - name: Deploy to Firebase Hosting
         run: |
-          firebase deploy \
-            --only hosting \
-            --project lntcmmb-intelligence1
+          PROJECT=$(echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}' | python3 -c "import sys,json; print(json.load(sys.stdin).get('project_id','lntcmmb-intelligence1'))")
+          echo "Deploying to project: $PROJECT"
+          firebase deploy --only hosting --project "$PROJECT"
 
       - name: Confirm live URL
         run: |
