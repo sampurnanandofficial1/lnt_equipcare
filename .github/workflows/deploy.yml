@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   deploy:
-    name: Build & Deploy to Firebase
+    name: Build & Deploy to Firebase Hosting
     runs-on: ubuntu-latest
 
     steps:
@@ -38,10 +38,6 @@ jobs:
           VITE_FIREBASE_APP_ID:              1:37497109814:web:eec6c70fc99f8264c6c797
           VITE_FIREBASE_MEASUREMENT_ID:      G-M3NH5FDXZ1
 
-      - name: Install Firebase Functions dependencies
-        run: npm install
-        working-directory: functions
-
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v2
         with:
@@ -55,7 +51,7 @@ jobs:
           firebase hosting:sites:create lntcmmb-equipcare \
             --project lntcmmb-intelligence1 2>/dev/null \
             && echo "✅ Site created" \
-            || echo "ℹ️  Site already exists — continuing"
+            || echo "ℹ️  Site already exists"
         continue-on-error: true
 
       - name: Apply hosting target
@@ -63,22 +59,15 @@ jobs:
           firebase target:apply hosting equipcare lntcmmb-equipcare \
             --project lntcmmb-intelligence1
 
-      - name: Set Anthropic API key as Firebase secret
-        run: |
-          echo "${{ secrets.ANTHROPIC_API_KEY }}" | \
-          firebase functions:secrets:set ANTHROPIC_API_KEY \
-            --project lntcmmb-intelligence1 --force 2>/dev/null || true
-        continue-on-error: true
-
-      - name: Deploy Hosting + Functions to Firebase
+      - name: Deploy Hosting only
         run: |
           firebase deploy \
-            --only hosting:equipcare,functions \
+            --only hosting:equipcare \
             --project lntcmmb-intelligence1
 
       - name: Print live URL
         run: |
-          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
           echo "✅  L&T Equipcare is LIVE on Firebase Hosting"
           echo "🌐  https://lntcmmb-equipcare.web.app"
-          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
