@@ -27,12 +27,12 @@ jobs:
         run: npm run build
         env:
           VITE_FIREBASE_API_KEY:             ${{ secrets.VITE_FIREBASE_API_KEY }}
-          VITE_FIREBASE_AUTH_DOMAIN:         lntcmmb-intelligence.firebaseapp.com
-          VITE_FIREBASE_PROJECT_ID:          lntcmmb-intelligence
-          VITE_FIREBASE_STORAGE_BUCKET:      lntcmmb-intelligence.firebasestorage.app
-          VITE_FIREBASE_MESSAGING_SENDER_ID: "37497109814"
-          VITE_FIREBASE_APP_ID:              1:37497109814:web:eec6c70fc99f8264c6c797
-          VITE_FIREBASE_MEASUREMENT_ID:      G-M3NH5FDXZ1
+          VITE_FIREBASE_AUTH_DOMAIN:         lntcmmb-equipcare-6cabd.firebaseapp.com
+          VITE_FIREBASE_PROJECT_ID:          lntcmmb-equipcare-6cabd
+          VITE_FIREBASE_STORAGE_BUCKET:      lntcmmb-equipcare-6cabd.firebasestorage.app
+          VITE_FIREBASE_MESSAGING_SENDER_ID: "1082472972328"
+          VITE_FIREBASE_APP_ID:              1:1082472972328:web:a27b01504ff141cd9fb51d
+          VITE_FIREBASE_MEASUREMENT_ID:      G-CQD1L58W6Z
 
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
@@ -40,27 +40,14 @@ jobs:
       - name: Write service account
         run: echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}' > /tmp/sa.json
 
-      - name: Deploy and capture output
+      - name: Deploy to Firebase Hosting
         env:
           GOOGLE_APPLICATION_CREDENTIALS: /tmp/sa.json
-        run: |
-          PROJECT=$(python3 -c "import json; print(json.load(open('/tmp/sa.json')).get('project_id'))")
-          echo "Project: $PROJECT"
-          firebase hosting:sites:create lntcmmb-equipcare --project "$PROJECT" 2>&1 || true
-          firebase deploy --only hosting --project "$PROJECT" --debug 2>&1 | tee /tmp/deploy.log
-          echo "Exit code: $?"
-
-      - name: Save output to repo
-        if: always()
-        run: |
-          mkdir -p deploy-logs
-          cp /tmp/deploy.log deploy-logs/deploy.txt 2>/dev/null || echo "No log" > deploy-logs/deploy.txt
-          git config user.email "actions@github.com"
-          git config user.name "GitHub Actions"
-          git add deploy-logs/
-          git diff --staged --quiet || git commit -m "log: firebase deploy output [skip ci]"
-          git push || true
+        run: firebase deploy --only hosting --project lntcmmb-equipcare-6cabd
 
       - name: Cleanup
         if: always()
-        run: rm -f /tmp/sa.json /tmp/deploy.log
+        run: rm -f /tmp/sa.json
+
+      - name: Live
+        run: echo "✅ LIVE → https://lntcmmb-equipcare-6cabd.web.app"

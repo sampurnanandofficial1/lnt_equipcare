@@ -20,57 +20,37 @@ export const initAnalytics = async () => {
   return null;
 };
 
-export const saveChatSession = async (sessionData) => {
+export const saveChatSession = async (data) => {
   try {
-    const docRef = await addDoc(collection(db, "equipcare_chats"), {
-      ...sessionData,
-      createdAt: serverTimestamp(),
-      source: "equipcare_website",
+    const ref = await addDoc(collection(db, "equipcare_chats"), {
+      ...data, createdAt: serverTimestamp(), source: "equipcare_website"
     });
-    return docRef.id;
-  } catch (e) {
-    console.error("saveChatSession error:", e);
-    return null;
-  }
+    return ref.id;
+  } catch (e) { console.error(e); return null; }
 };
 
-export const saveServiceRequest = async (requestData) => {
+export const saveServiceRequest = async (data) => {
   try {
-    const docRef = await addDoc(collection(db, "service_requests"), {
-      ...requestData,
-      status: "new",
-      createdAt: serverTimestamp(),
-      source: "equipcare_website",
+    const ref = await addDoc(collection(db, "service_requests"), {
+      ...data, status: "new", createdAt: serverTimestamp(), source: "equipcare_website"
     });
-    return docRef.id;
-  } catch (e) {
-    console.error("saveServiceRequest error:", e);
-    return null;
-  }
+    return ref.id;
+  } catch (e) { console.error(e); return null; }
 };
 
-export const logChatQuery = async (queryText, sessionId) => {
+export const logChatQuery = async (query, sessionId) => {
   try {
     await addDoc(collection(db, "chat_queries"), {
-      query: queryText,
-      sessionId,
-      timestamp: serverTimestamp(),
+      query, sessionId, timestamp: serverTimestamp()
     });
-  } catch (e) {
-    console.error("logChatQuery error:", e);
-  }
+  } catch (e) { console.error(e); }
 };
 
-export const savePartsEnquiry = async (enquiryData) => {
+export const savePartsEnquiry = async (data) => {
   try {
-    const docRef = await addDoc(collection(db, "parts_enquiries"), {
-      ...enquiryData,
-      status: "pending",
-      createdAt: serverTimestamp(),
+    const ref = await addDoc(collection(db, "parts_enquiries"), {
+      ...data, status: "pending", createdAt: serverTimestamp()
     });
-    return docRef.id;
-  } catch (e) {
-    console.error("savePartsEnquiry error:", e);
-    return null;
-  }
+    return ref.id;
+  } catch (e) { console.error(e); return null; }
 };
