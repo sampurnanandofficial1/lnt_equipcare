@@ -1,22 +1,39 @@
-name: Deploy L&T Equipcare to Firebase Hosting
+name: Deploy L&T Equipcare to GitHub Pages
 
 on:
   push:
     branches: [ main ]
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pages:    write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
 jobs:
   deploy:
-    runs-on: self-hosted
+    name: Build & Deploy
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
     steps:
       - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
         with:
-          clean: true
+          node-version: '22'
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm install
 
-      - name: Build React app
+      - name: Build
         run: npm run build
         env:
           VITE_FIREBASE_API_KEY:             ${{ secrets.VITE_FIREBASE_API_KEY }}
@@ -27,13 +44,14 @@ jobs:
           VITE_FIREBASE_APP_ID:              1:37497109814:web:eec6c70fc99f8264c6c797
           VITE_FIREBASE_MEASUREMENT_ID:      G-M3NH5FDXZ1
 
-      - name: Deploy to Firebase Hosting
-        run: |
-          firebase target:apply hosting equipcare lntcmmb-equipcare \
-            --project lntcmmb-intelligence1 2>/dev/null || true
-          firebase deploy \
-            --only hosting:equipcare \
-            --project lntcmmb-intelligence1
+      - uses: actions/configure-pages@v4
 
-      - name: Done
-        run: echo "✅ Live at https://lntcmmb-equipcare.web.app"
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - run: echo "✅ LIVE https://sampurnanandofficial1.github.io/lnt_equipcare/"
